@@ -32,6 +32,13 @@ void toEnterprise( int mes ){
     font3x5.print( chrBuff[i] );
     arduboy.display();
     delay(100);
+    arduboy.pollButtons();
+    if (arduboy.justPressed(A_BUTTON)) {
+      font3x5.setCursor(12,7);
+      font3x5.print( chrBuff );
+      arduboy.display();
+      break;
+    }
   }
   while(1){
     arduboy.pollButtons();

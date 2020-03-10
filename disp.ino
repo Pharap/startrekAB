@@ -266,6 +266,7 @@ void moveEnterprise( int deg, int dist ) {
   int x = enterprise.sector.x * 7 + 4;
   int y = enterprise.sector.y * 7;
   int warp = 0;
+  int hit;
   gdock = 0;
   enterprise.energy -= dist;
   if ( dist > 9 ) {
@@ -298,7 +299,12 @@ void moveEnterprise( int deg, int dist ) {
       break;
     }
     if (sector[xs][ys] > 1) {
-      if (sector[xs][ys] == 10) {
+      hit = sector[xs][ys];
+      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
+      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
+      sector[xs][ys] = 1;
+      warp = 0;
+      if (hit == 10) {
         gdock = 1;
         dockBase(); //dock base
       } else {
@@ -306,10 +312,6 @@ void moveEnterprise( int deg, int dist ) {
         crashAnimation();
         damageMechanism();
       }
-      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
-      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
-      sector[xs][ys] = 1;
-      warp = 0;
       break;
     }
     font3x5.setCursor(x + xa, y + ya);
