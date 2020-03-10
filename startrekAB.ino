@@ -26,6 +26,12 @@ const char string_5[] PROGMEM =
     "  DESTROY 25 KLINGONS IN\n"
     "  250 DAYS. THERE ARE 4\n"
     "  BASES.";
+const char string_6[] PROGMEM = 
+  "                ,------*------,\n"
+  ",-------------   '---  ------'\n"
+  " '-------- --'      / /\n"
+  "     ,---' '-------/ /--,\n"
+  "      '----------------'";
 
 const char * const string_table[] PROGMEM = {
   string_0,
@@ -33,7 +39,8 @@ const char * const string_table[] PROGMEM = {
   string_2,
   string_3,
   string_4,
-  string_5  
+  string_5,
+  string_6
 };
 
 //struct
@@ -87,7 +94,7 @@ byte totalKlingon = 0, totalBase = 0;
 byte gcurs=0, gKlingon=0;
 int days=300;
 bool gdock = 0;
-char chrBuff[120];
+char chrBuff[160];
 bool gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 

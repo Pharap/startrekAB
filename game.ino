@@ -1,7 +1,16 @@
 void title() {
   arduboy.clear();
-  prints(12, 4, "STARTREK", 1);
+  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[6])));
+  for(int i=0; i < 128; i++){
+    arduboy.clear();
+    font3x5.setCursor(i-125, 7);
+    font3x5.print( chrBuff );
+    arduboy.display();
+    delay(i/2);
+  }
+  prints(12, 7, "STARTREK", 1);
   arduboy.display();
+
   while(1){
     arduboy.pollButtons();
     if (arduboy.justPressed(A_BUTTON)) {
