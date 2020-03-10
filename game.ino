@@ -1,6 +1,6 @@
 void title() {
   arduboy.clear();
-  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[6])));
+  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[9])));
   for(int i=0; i < 128; i++){
     arduboy.clear();
     font3x5.setCursor(i-125, 7);
@@ -22,11 +22,11 @@ void title() {
   }
 }
 
-void order(){
+void toEnterprise( int mes ){
   arduboy.clear();
   font3x5.setTextColor(WHITE);
-  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[5])));
-  font3x5.setCursor(20,7);
+  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
+  font3x5.setCursor(12,7);
   
   for( int i=0; i < strlen(chrBuff); i++){
     font3x5.print( chrBuff[i] );
@@ -39,19 +39,6 @@ void order(){
       break;
     }
   }
-}
-
-void gameover() {
-  arduboy.clear();
-  prints(11, 4, "GAME OVER", 0);
-  arduboy.display();
-  while(1){
-    arduboy.pollButtons();
-    if (arduboy.justPressed(A_BUTTON)) {
-      break;
-    }
-  }
-  gloop = 0;
 }
 
 void longRangeSensor(byte x, byte y) {

@@ -21,12 +21,32 @@ const char string_1[] PROGMEM = "DISTANSE?";
 const char string_2[] PROGMEM = "ENERGY?";
 const char string_3[] PROGMEM = "PERCENTAGE?";
 const char string_4[] PROGMEM = "PHASER IS DAMAGED!";
-const char string_5[] PROGMEM = 
+
+const char string_5[] PROGMEM = //order
     "TO ENTERPRISE:\n\n"
     "  DESTROY 25 KLINGONS IN\n"
     "  250 DAYS. THERE ARE 4\n"
     "  BASES.";
-const char string_6[] PROGMEM = 
+
+const char string_6[] PROGMEM = //time is out
+    "TO ENTERPRISE:\n\n"
+    "  \n"
+    "  TIME IS OVER...\n"
+    "  ";
+
+const char string_7[] PROGMEM = //destroyed
+    "TO ENTERPRISE:\n\n"
+    "  YOU HAS BEEN DESTROYED.\n"
+    "  THE FEDERATION WILL BE\n"
+    "  CONQUERED.";
+
+const char string_8[] PROGMEM = //win
+    "TO ENTERPRISE:\n\n"
+    "  THE LAST KLINGON HAS BEEN\n"
+    "  DESTROYED. THE FEDERATION\n"
+    "  HAS BEEN SAVED !";
+
+const char string_9[] PROGMEM = 
   "                ,------*------,\n"
   ",-------------   '---  ------'\n"
   " '-------- --'      / /\n"
@@ -40,7 +60,10 @@ const char * const string_table[] PROGMEM = {
   string_3,
   string_4,
   string_5,
-  string_6
+  string_6,
+  string_7,
+  string_8,
+  string_9
 };
 
 //struct
@@ -95,7 +118,7 @@ byte gcurs=0, gKlingon=0;
 int days=300;
 bool gdock = 0;
 char chrBuff[160];
-bool gloop=0;
+int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 
 ship klingon[3];
@@ -113,8 +136,8 @@ void setup() {
 void loop() {
 
   title();
-  order();
+  toEnterprise(1);
   dispMain();
-  gameover();
-
+  toEnterprise( gloop + 1 );
+  gloop=0;
 }

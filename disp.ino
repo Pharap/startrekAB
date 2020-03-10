@@ -21,7 +21,7 @@ int dispComputer() {
   int curs = 0;
   int offset = 0;
   int result = 0;
-  int ans;
+  int ans, r;
   int x, y, c, d;
   float dx, dy, radius;
   int degree, dist;
@@ -77,7 +77,7 @@ int dispComputer() {
           radius = atan2( dy, dx );
           degree = radius / 2 / 3.1415 * 360;
           if (degree < 0) degree += 360;
-          dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10;
+          dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
           strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[0])));
           c = askAmount( 0, 360, chrBuff, degree, 1 );
           strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[1])));
@@ -92,6 +92,12 @@ int dispComputer() {
           launchTorpedo( 1 );
           break;
         case 3:
+          strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[2])));
+          d = askAmount( 0, enterprise.energy, chrBuff, 100, 0 );
+          for( int i=0; i < d; i++){
+            r=random(8);
+            if( damage[r] > 0 && random(100)==0 ) damage[r]--;
+          }
           break;
         case 4:
           arduboy.clear();
@@ -101,7 +107,7 @@ int dispComputer() {
           arduboy.display();
           break;
         case 5:
-          gloop = 1;
+          gloop = 2;
           break;
       }
       break;
@@ -239,6 +245,9 @@ void dispMain() {
           break;
       }
       days--;
+      if( days < 0 ) gloop = 1;
+      if( enterprise.energy < 0 ) gloop = 2;
+      if( totalKlingon == 0 ) gloop = 3;
       // gameover check
       //      if ( go == 1 ) break;
       //      klingonAttack();
@@ -289,10 +298,6 @@ void moveEnterprise( int deg, int dist ) {
       break;
     }
     if (sector[xs][ys] > 1) {
-      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
-      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
-      sector[xs][ys] = 1;
-      warp = 0;
       if (sector[xs][ys] == 10) {
         gdock = 1;
         dockBase(); //dock base
@@ -301,6 +306,10 @@ void moveEnterprise( int deg, int dist ) {
         crashAnimation();
         damageMechanism();
       }
+      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
+      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
+      sector[xs][ys] = 1;
+      warp = 0;
       break;
     }
     font3x5.setCursor(x + xa, y + ya);
