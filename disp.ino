@@ -310,6 +310,8 @@ void moveEnterprise( int deg, int dist ) {
       xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
       ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
       sector[xs][ys] = 1;
+      enterprise.sector.x = xs;
+      enterprise.sector.y = ys;
       warp = 0;
       if( hit >1 && hit < 10 ){
         crashAnimation();
