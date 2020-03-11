@@ -7,14 +7,9 @@ int getSector() {
     arduboy.pollButtons();
 
     updateMain();
-//    drawSRS(0);
 
     arduboy.drawFastVLine(sectorCurs.x * 7 + 5, 0, 56, WHITE);
     arduboy.drawFastHLine(1, sectorCurs.y * 7 + 3, 59, WHITE);
-
-//    drawStatus();
-
-//    drawMenu();
 
     if (arduboy.justPressed(LEFT_BUTTON)) {
       sectorCurs.x = (sectorCurs.x + 7) % 8;

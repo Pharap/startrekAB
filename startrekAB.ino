@@ -77,11 +77,7 @@ struct ship {
   int energy;
   int torpedo;
 };
-/*
-char* command[] = {
-  "MAP","NAV","TOR","PHA","SHI","DAM","PRO","COM"
-};
-*/
+
 const char menu_0[] PROGMEM = "MAP";
 const char menu_1[] PROGMEM = "NAV";
 const char menu_2[] PROGMEM = "TOR";
@@ -94,16 +90,7 @@ const char * const menu_table[] PROGMEM = {
   menu_0, menu_1, menu_2, menu_3,
   menu_4, menu_5, menu_6, menu_7
 };
-/*
-char* computer[] = {
-  "COMPUTE TRAJECTORY",
-  " COMPUTE QUADRAT  ",
-  "   LOCK TORPEDO   ",
-  "    SELF REPAIR   ",
-  "      RETURN      ",
-  " GIVE UP MISSION  "
-};
-*/
+
 const char computer_0[] PROGMEM = "COMPUTE TRAJECTORY";
 const char computer_1[] PROGMEM = " COMPUTE QUADRAT  ";
 const char computer_2[] PROGMEM = "   LOCK TORPEDO   ";
@@ -115,18 +102,6 @@ const char * const computer_table[] PROGMEM = {
   computer_4, computer_5
 };
 
-/*
-char* mechanism[] = {
-  "WARP ENGINES",
-  "L.R. SONSORS",
-  "S.R. SENSORS",
-  "PHOTON TUBES",
-  "PHASER CNTRL",
-  "SHIELD CNTRL",
-  "PROBE SENSOR",
-  "LIB COMPUTER"
-};
-*/
 const char mechanism_0[] PROGMEM = "WARP ENGINES";
 const char mechanism_1[] PROGMEM = "L.R. SONSORS";
 const char mechanism_2[] PROGMEM = "S.R. SENSORS";
@@ -155,7 +130,6 @@ byte totalKlingon = 0, totalBase = 0;
 byte gcurs=0, gKlingon=0;
 int days=250;
 bool gdock = 0;
-//char chrBuff[160];
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 

@@ -77,7 +77,6 @@ void hitEnterprise( int dam ){
     enterprise.energy -= dam - enterprise.shield;
     enterprise.shield = 0;
     damageMechanism();
-    // 故障
   }
 }
 

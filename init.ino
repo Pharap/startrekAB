@@ -65,8 +65,6 @@ void initQuadrant() {
 void initEnterprise() {
   enterprise.quadrant.x = random(8);
   enterprise.quadrant.y = random(8);
-//  enterprise.sector.x = random(8);
-//  enterprise.sector.y = random(8);
   enterprise.energy = 1500;
   enterprise.shield = 1500;
   enterprise.torpedo = 10;
@@ -82,7 +80,6 @@ void initSector(byte mx, byte my) {
   byte s = numOfStar(quadrant[mx][my]);
   int rx, ry;
   int counter = 0;
-//  memset(&sector, 0, sizeof(sector));
   for(int i=0; i<8; i++){
     for(int j=0; j<8; j++){
       sector[i][j]=0;

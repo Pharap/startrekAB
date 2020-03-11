@@ -106,9 +106,6 @@ int dispComputer() {
         case 4:
           arduboy.clear();
           updateMain();
-//          drawSRS(0);
-//          drawStatus();
-//          drawMenu();
           arduboy.display();
           break;
         case 5:
@@ -143,15 +140,10 @@ void dispMain() {
   int c, d;
   double total;
   point sectorCurs;
-  //  sectorCurs.x = enterprise.sector.x;
-  //  sectorCurs.y = enterprise.sector.y;
   while ( gloop == 0) {
     arduboy.clear();
     arduboy.pollButtons();
     updateMain();
-//    drawSRS(0);
-//    drawStatus();
-//    drawMenu();
     if (arduboy.justPressed(LEFT_BUTTON)) {
       gcurs = (gcurs + 7) % 8;
     }
@@ -165,9 +157,6 @@ void dispMain() {
           dispGalaxy();
           arduboy.clear();
           updateMain();
-//          drawSRS(0);
-//          drawStatus();
-//          drawMenu();
           arduboy.display();
           break;
         case 1: //warp engine
@@ -201,6 +190,7 @@ void dispMain() {
 
 //            strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[4])));
 //            windowAnimation( chrBuff );
+
           } else {
             strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
             d = askAmount( 0, enterprise.energy, buf, 0, 0 );
@@ -451,7 +441,6 @@ void fireTorpedo( int deg ) {
   drawSRS(0);
 }
 
-//SRS and probe break, 見えるところだけ dx*dy=1 or dx+dy=1
 void firePhaser( int energy ) {
   int dx, dy, chk;
   enterprise.energy -= energy;
@@ -543,7 +532,6 @@ void klingonAttack() {
       n = 7;
       drawSRS(0);
     }
-    //    bombAnimation( enterprise.sector.x, enterprise.sector.y );
   }
 }
 

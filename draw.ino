@@ -136,8 +136,6 @@ void bombAnimation( byte x, byte y ) {
   for (int i = 0; i < 6; i++) {
     for ( int j = 0; j < 3; j++) {
       updateMain();
-//      drawSRS(0);
-//      drawMenu();
       arduboy.drawCircle(bomb[j].x, bomb[j].y, i, WHITE);
     }
 
@@ -147,8 +145,6 @@ void bombAnimation( byte x, byte y ) {
   for (int i = 0; i < 6; i++) {
     for ( int j = 0; j < 3; j++) {
       updateMain();
-//      drawSRS(0);
-//      drawMenu();
       arduboy.drawCircle(bomb[j].x, bomb[j].y, 6 - i, BLACK);
     }
     arduboy.display();
@@ -159,18 +155,12 @@ void bombAnimation( byte x, byte y ) {
 void phaserAnimation( byte x, byte y ) {
   for (int i = 4; i > 0; i--) {
     updateMain();
-//    drawSRS(0);
-//    drawMenu();
-//    drawStatus();
     arduboy.drawRect(x * 7 + 4 + 1 - i * 2, y * 7 + 3 - i * 2, i * 4, i * 4, WHITE);
     arduboy.display();
     delay(100);
     arduboy.clear();
   }
   updateMain();
-//  drawSRS(0);
-//  drawMenu();
-//  drawStatus();
   arduboy.display();
 }
 
@@ -194,9 +184,6 @@ int askAmount( int minimum, int maximum, char* message, int def, int m ) {
   while (1) {
     arduboy.clear();
     updateMain();
-//    drawSRS(0);
-//    drawStatus();
-//    drawMenu();
     arduboy.fillRect( 16, 14, 96, 36, WHITE );
     arduboy.fillRect( 17, 15, 94, 34, BLACK );
     font3x5.setTextColor(WHITE);
@@ -254,13 +241,6 @@ int askAmount( int minimum, int maximum, char* message, int def, int m ) {
       font3x5.print( result );
     }
     arduboy.display();
-    /*
-        if (delta < 5) {
-          delay(250);
-        } else {
-          delay(20);
-        }
-    */
   }
 }
 
@@ -283,9 +263,6 @@ void windowAnimation( char *mess) {
   for (int i = 9; i > 0; i--) {
     arduboy.clear();
     updateMain();
-//    drawSRS(0);
-//    drawStatus();
-//    drawMenu();
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
@@ -293,9 +270,6 @@ void windowAnimation( char *mess) {
   }
   arduboy.clear();
   updateMain();
-//  drawSRS(0);
-//  drawStatus();
-//  drawMenu();
   arduboy.display();
 }
 
@@ -313,9 +287,6 @@ void closeWindow() {
   for (int i = 9; i > 0; i--) {
     arduboy.clear();
     updateMain();
-//    drawSRS(0);
-//    drawStatus();
-//    drawMenu();
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
@@ -323,8 +294,5 @@ void closeWindow() {
   }
   arduboy.clear();
   updateMain();
-//  drawSRS(0);
-//  drawStatus();
-//  drawMenu();
   arduboy.display();
 }
