@@ -6,7 +6,15 @@ void title() {
     font3x5.setCursor(i-125, 7);
     font3x5.print( chrBuff );
     arduboy.display();
-    delay(i/2);
+    delay(pow(i/8,2));
+    arduboy.pollButtons();
+    if (arduboy.justPressed(A_BUTTON)) {
+      arduboy.clear();
+      font3x5.setCursor(2,7);
+      font3x5.print( chrBuff );
+      arduboy.display();
+      break;
+    }
   }
   prints(12, 7, "STARTREK", 1);
   arduboy.display();
