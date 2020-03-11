@@ -186,6 +186,8 @@ void crashAnimation() {
 int askAmount( int minimum, int maximum, char* message, int def, int m ) {
   int result = def;
   int delta = 0;
+  int border;
+  float ratio;
 
   openWindow();
 
@@ -204,21 +206,21 @@ int askAmount( int minimum, int maximum, char* message, int def, int m ) {
     arduboy.pollButtons();
     if (arduboy.pressed(LEFT_BUTTON)) {
       if ( delta < 10 ) {
-        result = (result + (maximum - 1) * ((delta % 10) == 0)) % maximum;
+        result = (result + (maximum - 0) * ((delta % 10) == 0)) % (maximum+1);
       } else if ( delta > 10 && delta < 50) {
-        result = (result + (maximum - 1)) % maximum;
+        result = (result + (maximum - 0)) % (maximum+1);
       } else {
-        result = (result + (maximum - 1) * 5) % maximum;
+        result = (result + (maximum - 0) * 5) % (maximum+1);
       }
       delta++;
     }
     if (arduboy.pressed(RIGHT_BUTTON)) {
       if ( delta < 10 ) {
-        result = (result + ((delta % 10) == 0)) % maximum;
+        result = (result + ((delta % 10) == 0)) % (maximum+1);
       } else if ( delta > 10 && delta < 50) {
-        result = (result + 1) % maximum;
+        result = (result + 1) % (maximum+1);
       } else {
-        result = (result + 5) % maximum;
+        result = (result + 5) % (maximum+1);
       }
       delta++;
     }
@@ -233,15 +235,17 @@ int askAmount( int minimum, int maximum, char* message, int def, int m ) {
       return result;
     }
     if (m == 0) {
+      ratio = (float)result / (float)maximum;
+      border = ratio * 64 ;
       arduboy.drawRect(30, 30, 68, 5, WHITE);
-      arduboy.fillRect(32, 32, result * 64 / (maximum - 1), 1, WHITE);
-      arduboy.fillRect(32 + result * 64 / (maximum - 1), 32, (maximum - 1 - result) * 64 / (maximum - 1), 1, BLACK);
+      arduboy.fillRect(32, 32, border, 1, WHITE);
+      arduboy.fillRect(32 + border + 1, 32, 64 - border, 1, BLACK);
       font3x5.setCursor( 30, 38);
       font3x5.print( minimum );
       font3x5.setCursor( 60, 38);
       font3x5.print( result );
       font3x5.setCursor( 90, 38);
-      font3x5.print( maximum - 1 );
+      font3x5.print( maximum );
     } else {
       arduboy.drawFastVLine(64, 20, 24, WHITE);
       arduboy.drawFastHLine(52, 32, 24, WHITE);

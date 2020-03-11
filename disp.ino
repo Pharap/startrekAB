@@ -63,10 +63,10 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2));
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 360, buf, degree, 1 );
+          c = askAmount( 0, 359, buf, degree, 1 );
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 3, buf, 2, 0 );
+            d = askAmount( 0, 2, buf, 2, 0 );
           } else {
             d = askAmount( 0, 80, buf, dist, 0 );
           }
@@ -83,10 +83,10 @@ int dispComputer() {
           if (degree < 0) degree += 360;
           dist = sqrt( pow(dx, 2) + pow(dy, 2)) * 10 + 5;
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 360, buf, degree, 1 );
+          c = askAmount( 0, 359, buf, degree, 1 );
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 3, buf, 2, 0 );
+            d = askAmount( 0, 2, buf, 2, 0 );
           } else {
             d = askAmount( 0, 80, buf, dist, 0 );
           }
@@ -172,10 +172,10 @@ void dispMain() {
           break;
         case 1: //warp engine
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-          c = askAmount( 0, 360, buf, 0, 1 );
+          c = askAmount( 0, 359, buf, 0, 1 );
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[1])));
           if (damage[0] > 0) {
-            d = askAmount( 0, 3, buf, 2, 0 );
+            d = askAmount( 0, 2, buf, 2, 0 );
           } else {
             d = askAmount( 0, 80, buf, 2, 0 );
           }
@@ -379,7 +379,7 @@ void launchTorpedo( int m ) {
   } else {
     if ( m == 0 ) {
       strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-      c = askAmount( 0, 360, buf, 0, 1 );
+      c = askAmount( 0, 359, buf, 0, 1 );
       fireTorpedo( c );
     } else {
       ans = getSector();
@@ -391,7 +391,7 @@ void launchTorpedo( int m ) {
       degree = radius / 2 / 3.1415 * 360;
       if (degree < 0) degree += 360;
       strcpy_P( buf, (char*)pgm_read_word(&(string_table[0])));
-      c = askAmount( 0, 360, buf, degree, 1 );
+      c = askAmount( 0, 359, buf, degree, 1 );
       fireTorpedo( c );
     }
   }
