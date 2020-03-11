@@ -3,7 +3,8 @@ void dispDamage() {
   arduboy.fillRect(0, 0, 127, 7, WHITE);
   prints(8, 0, "DAMAGE REPORT", 1);
   for (int i = 0; i < 8; i++) {
-    prints(6, i + 1, mechanism[i], (damage[i] > 0));
+    strcpy_P(chrBuff, (char*)pgm_read_word(&(mechanism_table[i])));
+    prints(6, i + 1, chrBuff, (damage[i] > 0));
     font3x5.print(F("    "));
     font3x5.setTextColor(WHITE);
     if (damage[i] > 0) {
@@ -35,7 +36,8 @@ int dispComputer() {
     arduboy.fillRect(0, 0, 127, 7, WHITE);
     prints(8, 0, "LIBRARY COMPUTER", 1);
     for (int i = offset; i < 6; i++) {
-      prints(8, i + 3, computer[i], curs == i);
+      strcpy_P(chrBuff, (char*)pgm_read_word(&(computer_table[i])));
+      prints(8, i + 3, chrBuff, curs == i);
     }
     arduboy.display();
 
@@ -527,26 +529,25 @@ void klingonAttack() {
 
 void probe() {
   openWindow();
-  font3x5.setCursor(20, 20);
+  arduboy.fillRect(16, 14, 96, 7, WHITE);
+  font3x5.setCursor(40, 14);
+  font3x5.setTextColor( BLACK );
   font3x5.println( F("PROBE SENSOR") );
+  font3x5.setTextColor( WHITE );
 
   for (int i = 0; i < numOfKlingon(quadrant[enterprise.quadrant.x][enterprise.quadrant.y]); i++) {
     if ( klingon[i].energy < 0 ) {
       continue;
     }
-    font3x5.setCursor(20, 27 + i * 7);
+    font3x5.setCursor(24, 23 + i * 7);
+    font3x5.print( F("SECTOR:") );
     font3x5.print( klingon[i].sector.x );
     font3x5.print( '-' );
     font3x5.print( klingon[i].sector.y );
-    font3x5.print( ' ' );
+    font3x5.print( F("   ") );
     font3x5.print( klingon[i].energy );
   }
   arduboy.display();
-
-  while (1) {
-    arduboy.pollButtons();
-    if (arduboy.justPressed(A_BUTTON)) {
-      break;
-    }
-  }
+  waitA();
+  closeWindow();
 }

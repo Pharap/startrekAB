@@ -83,7 +83,8 @@ void damageMechanism(){
   }
   openWindow();
   font3x5.setCursor( 20, 20 );
-  font3x5.print( mechanism[r] );
+  strcpy_P(chrBuff, (char*)pgm_read_word(&(mechanism_table[r])));
+  font3x5.print( chrBuff );
   font3x5.setCursor( 22, 27 );
   font3x5.print( F("IS DAMAGED!") );
   arduboy.display();
@@ -96,7 +97,8 @@ void repairMechanism(){
     if( damage[i] == 1 ){
       openWindow();
       font3x5.setCursor( 20, 20 );
-      font3x5.print( mechanism[i] );
+      strcpy_P(chrBuff, (char*)pgm_read_word(&(mechanism_table[i])));
+      font3x5.print( chrBuff );
       font3x5.setCursor( 22, 27 );
       font3x5.print( F("IS REPAIRED!") );
       arduboy.display();

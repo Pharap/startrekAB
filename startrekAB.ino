@@ -77,11 +77,24 @@ struct ship {
   int energy;
   int torpedo;
 };
-
+/*
 char* command[] = {
   "MAP","NAV","TOR","PHA","SHI","DAM","PRO","COM"
 };
-
+*/
+const char menu_0[] PROGMEM = "MAP";
+const char menu_1[] PROGMEM = "NAV";
+const char menu_2[] PROGMEM = "TOR";
+const char menu_3[] PROGMEM = "PHA";
+const char menu_4[] PROGMEM = "SHI";
+const char menu_5[] PROGMEM = "DAM";
+const char menu_6[] PROGMEM = "PRO";
+const char menu_7[] PROGMEM = "COM";
+const char * const menu_table[] PROGMEM = {
+  menu_0, menu_1, menu_2, menu_3,
+  menu_4, menu_5, menu_6, menu_7
+};
+/*
 char* computer[] = {
   "COMPUTE TRAJECTORY",
   " COMPUTE QUADRAT  ",
@@ -90,7 +103,19 @@ char* computer[] = {
   "      RETURN      ",
   " GIVE UP MISSION  "
 };
+*/
+const char computer_0[] PROGMEM = "COMPUTE TRAJECTORY";
+const char computer_1[] PROGMEM = " COMPUTE QUADRAT  ";
+const char computer_2[] PROGMEM = "   LOCK TORPEDO   ";
+const char computer_3[] PROGMEM = "    SELF REPAIR   ";
+const char computer_4[] PROGMEM = "      RETURN      ";
+const char computer_5[] PROGMEM = " GIVE UP MISSION  ";
+const char * const computer_table[] PROGMEM = {
+  computer_0, computer_1, computer_2, computer_3,
+  computer_4, computer_5
+};
 
+/*
 char* mechanism[] = {
   "WARP ENGINES",
   "L.R. SONSORS",
@@ -100,6 +125,19 @@ char* mechanism[] = {
   "SHIELD CNTRL",
   "PROBE SENSOR",
   "LIB COMPUTER"
+};
+*/
+const char mechanism_0[] PROGMEM = "WARP ENGINES";
+const char mechanism_1[] PROGMEM = "L.R. SONSORS";
+const char mechanism_2[] PROGMEM = "S.R. SENSORS";
+const char mechanism_3[] PROGMEM = "PHOTON TUBES";
+const char mechanism_4[] PROGMEM = "PHASER CNTRL";
+const char mechanism_5[] PROGMEM = "SHIELD CNTRL";
+const char mechanism_6[] PROGMEM = "PROBE SENSOR";
+const char mechanism_7[] PROGMEM = "LIB COMPUTER";
+const char * const mechanism_table[] PROGMEM = {
+  mechanism_0, mechanism_1, mechanism_2, mechanism_3,
+  mechanism_4, mechanism_5, mechanism_6, mechanism_7
 };
 
 struct player {

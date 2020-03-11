@@ -42,7 +42,8 @@ void drawGalaxy() {
 
 void drawMenu(){
   for (int i = 0; i < 8; i++) {
-    prints(i * 4, 8, command[i], (gcurs == i));
+    strcpy_P(chrBuff, (char*)pgm_read_word(&(menu_table[i])));
+    prints(i * 4, 8, chrBuff, (gcurs == i));
   }
 }
 
