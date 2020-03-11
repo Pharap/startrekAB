@@ -155,7 +155,7 @@ byte totalKlingon = 0, totalBase = 0;
 byte gcurs=0, gKlingon=0;
 int days=300;
 bool gdock = 0;
-char chrBuff[160];
+//char chrBuff[160];
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
 

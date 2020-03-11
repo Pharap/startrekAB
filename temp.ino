@@ -75,6 +75,7 @@ int getQuadrant() {
 }
 
 void damageMechanism(){
+  char buf[13];
   int r = random(8);
   damage[r] += 5 + random(10);
   if(r == 5){
@@ -83,8 +84,8 @@ void damageMechanism(){
   }
   openWindow();
   font3x5.setCursor( 20, 20 );
-  strcpy_P(chrBuff, (char*)pgm_read_word(&(mechanism_table[r])));
-  font3x5.print( chrBuff );
+  strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[r])));
+  font3x5.print( buf );
   font3x5.setCursor( 22, 27 );
   font3x5.print( F("IS DAMAGED!") );
   arduboy.display();
@@ -93,12 +94,13 @@ void damageMechanism(){
 }
 
 void repairMechanism(){
+  char buf[13];
   for(int i=0; i<8; i++){
     if( damage[i] == 1 ){
       openWindow();
       font3x5.setCursor( 20, 20 );
-      strcpy_P(chrBuff, (char*)pgm_read_word(&(mechanism_table[i])));
-      font3x5.print( chrBuff );
+      strcpy_P( buf, (char*)pgm_read_word(&(mechanism_table[i])));
+      font3x5.print( buf );
       font3x5.setCursor( 22, 27 );
       font3x5.print( F("IS REPAIRED!") );
       arduboy.display();

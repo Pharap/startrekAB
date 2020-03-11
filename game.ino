@@ -1,17 +1,18 @@
 void title() {
+  char buf[160];
   arduboy.clear();
-  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[9])));
+  strcpy_P( buf, (char*)pgm_read_word(&(string_table[9])));
   for(int i=0; i < 128; i++){
     arduboy.clear();
     font3x5.setCursor(i-125, 7);
-    font3x5.print( chrBuff );
+    font3x5.print( buf );
     arduboy.display();
     delay(pow(i/8,2));
     arduboy.pollButtons();
     if (arduboy.justPressed(A_BUTTON)) {
       arduboy.clear();
       font3x5.setCursor(2,7);
-      font3x5.print( chrBuff );
+      font3x5.print( buf );
       arduboy.display();
       break;
     }
@@ -31,19 +32,20 @@ void title() {
 }
 
 void toEnterprise( int mes ){
+  char buf[96];
   arduboy.clear();
   font3x5.setTextColor(WHITE);
-  strcpy_P(chrBuff, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
+  strcpy_P( buf, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
   font3x5.setCursor(12,7);
   
-  for( int i=0; i < strlen(chrBuff); i++){
-    font3x5.print( chrBuff[i] );
+  for( int i=0; i < strlen( buf ); i++){
+    font3x5.print( buf[i] );
     arduboy.display();
     delay(100);
     arduboy.pollButtons();
     if (arduboy.justPressed(A_BUTTON)) {
       font3x5.setCursor(12,7);
-      font3x5.print( chrBuff );
+      font3x5.print( buf );
       arduboy.display();
       break;
     }
