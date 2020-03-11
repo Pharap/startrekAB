@@ -153,7 +153,7 @@ byte quadrant[8][8] = {};
 byte sector[8][8] = {};
 byte totalKlingon = 0, totalBase = 0;
 byte gcurs=0, gKlingon=0;
-int days=300;
+int days=250;
 bool gdock = 0;
 //char chrBuff[160];
 int gloop=0;
@@ -172,7 +172,7 @@ void setup() {
 }
 
 void loop() {
-
+  days = 250;
   title();
   toEnterprise(1);
   dispMain();

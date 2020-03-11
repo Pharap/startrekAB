@@ -105,9 +105,10 @@ int dispComputer() {
           break;
         case 4:
           arduboy.clear();
-          drawSRS(0);
-          drawStatus();
-          drawMenu();
+          updateMain();
+//          drawSRS(0);
+//          drawStatus();
+//          drawMenu();
           arduboy.display();
           break;
         case 5:
@@ -147,9 +148,10 @@ void dispMain() {
   while ( gloop == 0) {
     arduboy.clear();
     arduboy.pollButtons();
-    drawSRS(0);
-    drawStatus();
-    drawMenu();
+    updateMain();
+//    drawSRS(0);
+//    drawStatus();
+//    drawMenu();
     if (arduboy.justPressed(LEFT_BUTTON)) {
       gcurs = (gcurs + 7) % 8;
     }
@@ -162,9 +164,10 @@ void dispMain() {
           //            dispGalaxy();
           dispGalaxy();
           arduboy.clear();
-          drawSRS(0);
-          drawStatus();
-          drawMenu();
+          updateMain();
+//          drawSRS(0);
+//          drawStatus();
+//          drawMenu();
           arduboy.display();
           break;
         case 1: //warp engine
@@ -270,7 +273,7 @@ void moveEnterprise( int deg, int dist ) {
   int x = enterprise.sector.x * 7 + 4;
   int y = enterprise.sector.y * 7;
   int warp = 0;
-  int hit;
+  int hit, r;
   gdock = 0;
   enterprise.energy -= dist;
   if ( dist > 9 ) {
@@ -308,13 +311,25 @@ void moveEnterprise( int deg, int dist ) {
       ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
       sector[xs][ys] = 1;
       warp = 0;
-      if (hit == 10) {
+      if( hit >1 && hit < 10 ){
+        crashAnimation();
+        r = random(200);
+        klingon[hit-2].energy -= r;
+        hitEnterprise( random( 200 ) );
+        if (klingon[hit - 2].energy < 0) {
+          bombAnimation(klingon[hit-2].sector.x,klingon[hit-2].sector.y);
+          sector[klingon[hit-2].sector.x][klingon[hit-2].sector.y] = 0;
+          gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
+          totalKlingon--;
+        }
+        if (enterprise.shield == 0) damageMechanism();
+      } else if (hit == 10) {
         gdock = 1;
         dockBase(); //dock base
       } else {
         hitEnterprise( random( 200 ) );
         crashAnimation();
-        damageMechanism();
+        if (enterprise.shield == 0) damageMechanism();
       }
       break;
     }

@@ -42,6 +42,8 @@ void warpQuadrant( byte x, byte y, int deg ){
     }
     arduboy.display();
     delay(20);
+    arduboy.clear();
+    updateMain();
   }
     
   gdock = 0;
@@ -65,4 +67,10 @@ void waitA(){
       break;
     }
   }
+}
+
+void updateMain(){
+  drawSRS(0);
+  drawStatus();
+  drawMenu();
 }
