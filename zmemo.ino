@@ -15,11 +15,6 @@
 //self repair
 //quit game
 
-// 複数のクリンゴン
-// 途中がenergy==0になっても、quadrantから引いてはいけない。
-// 透明のklingon
-
-
 void warpQuadrant( byte x, byte y, int deg ){
   deg += 180;
   arduboy.fillRect(0,0,60,56,BLACK);
@@ -33,7 +28,7 @@ void warpQuadrant( byte x, byte y, int deg ){
       arduboy.drawPixel( dot[i].x + j*cos(2*3.1415*deg/360), dot[i].y + j*sin(2*3.1415*deg/360), WHITE);
     }
     arduboy.display();
-    delay(20);
+    delay(SPEED);
   }
   delay(200);
   for(int j=29; j>0; j--){
@@ -41,7 +36,7 @@ void warpQuadrant( byte x, byte y, int deg ){
       arduboy.drawPixel( dot[i].x + j*cos(2*3.1415*deg/360), dot[i].y + j*sin(2*3.1415*deg/360), BLACK);
     }
     arduboy.display();
-    delay(20);
+    delay(SPEED);
   }
   gdock = 0;
   

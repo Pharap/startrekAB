@@ -4,6 +4,8 @@
 #define numOfKlingon(q) (q & 0b01100000)>>5
 #define numOfBase(q)    (q & 0b00010000)>>4
 #define numOfStar(q)    (q & 0b00001111)
+
+#define SPEED 10
 /*
 galaxy[x,y]=0b00000000;
               || ||

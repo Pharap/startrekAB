@@ -331,7 +331,7 @@ void moveEnterprise( int deg, int dist ) {
     font3x5.setCursor(x + xa, y + ya);
     font3x5.print('E');
     arduboy.display();
-    delay(20);
+    delay(SPEED);
     arduboy.fillRect(0, 0, 64, 55, BLACK);
     drawSRS(0);
     sector[xs][ys] = 1;
@@ -436,7 +436,7 @@ void fireTorpedo( int deg ) {
     font3x5.print('#');
     arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);
     arduboy.display();
-    delay(20);
+    delay(SPEED);
     arduboy.fillRect(0, 0, 64, 56, BLACK);
     drawSRS(0);
     n++;
@@ -527,7 +527,7 @@ void klingonAttack() {
           arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);
         }
         arduboy.display();
-        delay(20);
+        delay(SPEED);
         arduboy.fillRect(0, 0, 64, 56, BLACK);
         drawSRS(0);
         n++;

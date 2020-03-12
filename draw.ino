@@ -140,7 +140,7 @@ void bombAnimation( byte x, byte y ) {
     }
 
     arduboy.display();
-    delay(100);
+    delay(SPEED * 5);
   }
   for (int i = 0; i < 6; i++) {
     for ( int j = 0; j < 3; j++) {
@@ -148,7 +148,7 @@ void bombAnimation( byte x, byte y ) {
       arduboy.drawCircle(bomb[j].x, bomb[j].y, 6 - i, BLACK);
     }
     arduboy.display();
-    delay(100);
+    delay(SPEED * 5);
   }
 }
 
@@ -157,7 +157,7 @@ void phaserAnimation( byte x, byte y ) {
     updateMain();
     arduboy.drawRect(x * 7 + 4 + 1 - i * 2, y * 7 + 3 - i * 2, i * 4, i * 4, WHITE);
     arduboy.display();
-    delay(100);
+    delay(SPEED * 5);
     arduboy.clear();
   }
   updateMain();
@@ -168,7 +168,7 @@ void crashAnimation() {
   for ( int i = 0; i < 20; i++) {
     drawSRS(random(8) - 4);
     arduboy.display();
-    delay(20);
+    delay(SPEED);
     arduboy.fillRect(0, 0, 65, 56, BLACK);
   }
 }
@@ -249,7 +249,7 @@ void windowAnimation( char *mess) {
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
-    delay(20);
+    delay(SPEED / 2);
   }
   font3x5.setCursor(20, 20);
   font3x5.print( mess );
@@ -266,7 +266,7 @@ void windowAnimation( char *mess) {
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
-    delay(20);
+    delay(SPEED / 2);
   }
   arduboy.clear();
   updateMain();
@@ -278,7 +278,7 @@ void openWindow() {
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
-    delay(10);
+    delay(SPEED / 2);
   }
   font3x5.setTextColor(WHITE);
 }
@@ -290,7 +290,7 @@ void closeWindow() {
     arduboy.fillRect( 16, 32 - i * 2, 96, i * 4, WHITE );
     arduboy.fillRect( 17, 32 - i * 2 + 1, 96 - 2, i * 4 - 2, BLACK );
     arduboy.display();
-    delay(10);
+    delay(SPEED / 2);
   }
   arduboy.clear();
   updateMain();
