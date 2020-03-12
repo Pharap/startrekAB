@@ -107,12 +107,14 @@ int dispComputer() {
           arduboy.clear();
           updateMain();
           arduboy.display();
-          break;
+          return 1;
+//          break;
         case 5:
           gloop = 2;
           break;
       }
-      break;
+      return 0;
+//      break;
     }
   }
 }
@@ -234,9 +236,10 @@ void dispMain() {
           }
           break;
         case 7: //library computer
-          dispComputer();
-          repairMechanism();
-          klingonAttack();
+          if( dispComputer()==0 ){
+            repairMechanism();
+            klingonAttack();
+          }
           //                      go = 1;
           //            gameover();
           break;

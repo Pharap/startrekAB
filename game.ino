@@ -76,7 +76,7 @@ void hitEnterprise( int dam ){
   } else {
     enterprise.energy -= dam - enterprise.shield;
     enterprise.shield = 0;
-    damageMechanism();
+//    damageMechanism();
   }
 }
 
@@ -84,4 +84,7 @@ void dockBase(){
   enterprise.energy = 1500;
   enterprise.shield = 1500;
   enterprise.torpedo = 10;
+  for(int i=0; i<8; i++){
+    damage[i]=0;
+  }
 }
