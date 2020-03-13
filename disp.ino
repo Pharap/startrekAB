@@ -420,12 +420,13 @@ void fireTorpedo( int deg ) {
       arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
       brad = atan2( blackhole.y * 7 + 3 - y - ya, blackhole.x*4 + 7 - x - xa );
       bdeg = brad / 2 / 3.1415 * 360;
-      if (bdeg < 0) bdeg += 360;
+//      if (bdeg < 0) bdeg += 360;
     } else {
       bdeg = 0;
     }
-    xa = n * cos(2 * 3.1415 * (deg + bdeg/10) / 360);
-    ya = n * sin(2 * 3.1415 * (deg + bdeg/10) / 360);
+    deg += bdeg / 100;
+    xa = n * cos(2 * 3.1415 * deg / 360);
+    ya = n * sin(2 * 3.1415 * deg / 360);
 
     xs = (x + xa - 4 + 3) / 7;
     ys = (y + ya + 3 ) / 7;
