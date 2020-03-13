@@ -267,6 +267,10 @@ void moveEnterprise( int deg, int dist ) {
   int y = enterprise.sector.y * 7;
   int warp = 0;
   int hit, r;
+
+  float brad;
+  int bdeg;
+  
   gdock = 0;
   enterprise.energy -= dist;
   if ( dist > 9 ) {
@@ -274,9 +278,17 @@ void moveEnterprise( int deg, int dist ) {
     dist = 2;
   }
   for ( int n = 0; n < dist * 8; n++) {
+    if(sBlackhole == 1){
+      arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
+      brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
+      bdeg = brad / 2 / 3.1415 * 360;
+      if (bdeg < 0) bdeg += 360;
+    } else {
+      bdeg = 0;
+    }
     sector[enterprise.sector.x][enterprise.sector.y] = 0;
-    xa = n * cos(2 * 3.1415 * deg / 360);
-    ya = n * sin(2 * 3.1415 * deg / 360);
+    xa = n * cos(2 * 3.1415 * (deg + bdeg/30) / 360);
+    ya = n * sin(2 * 3.1415 * (deg + bdeg/30) / 360);
 
     xs = (x + xa - 4 + 3) / 7;
     ys = (y + ya + 3 ) / 7;
@@ -300,8 +312,8 @@ void moveEnterprise( int deg, int dist ) {
     }
     if (sector[xs][ys] > 1) {
       hit = sector[xs][ys];
-      xs = (x + (n - 4) * cos(2 * 3.1415 * deg / 360) - 1 ) / 7;
-      ys = (y + (n - 4) * sin(2 * 3.1415 * deg / 360) + 4 ) / 7;
+      xs = (x + (n - 4) * cos(2 * 3.1415 * (deg + bdeg/30) / 360) - 1 ) / 7;
+      ys = (y + (n - 4) * sin(2 * 3.1415 * (deg + bdeg/30) / 360) + 4 ) / 7;
       sector[xs][ys] = 1;
       enterprise.sector.x = xs;
       enterprise.sector.y = ys;
@@ -399,10 +411,21 @@ void fireTorpedo( int deg ) {
   int y = enterprise.sector.y * 7;
   int n = 0;
 
+  float brad;
+  int bdeg;
+  
   enterprise.torpedo -= 1;
   while (1) {
-    xa = n * cos(2 * 3.1415 * deg / 360);
-    ya = n * sin(2 * 3.1415 * deg / 360);
+    if(sBlackhole == 1){
+      arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
+      brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
+      bdeg = brad / 2 / 3.1415 * 360;
+      if (bdeg < 0) bdeg += 360;
+    } else {
+      bdeg = 0;
+    }
+    xa = n * cos(2 * 3.1415 * (deg + bdeg/10) / 360);
+    ya = n * sin(2 * 3.1415 * (deg + bdeg/10) / 360);
 
     xs = (x + xa - 4 + 3) / 7;
     ys = (y + ya + 3 ) / 7;

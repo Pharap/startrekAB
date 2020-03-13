@@ -134,10 +134,14 @@ int days=250;
 bool gdock = 0;
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
+bool existBlackhole = 1;
+bool sBlackhole = 0;
 
 ship klingon[3];
 point base;
 player enterprise;
+
+point blackhole;
 
 //ARDUBOY_NO_USB
 

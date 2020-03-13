@@ -80,6 +80,8 @@ void initSector(byte mx, byte my) {
   byte s = numOfStar(quadrant[mx][my]);
   int rx, ry;
   int counter = 0;
+  sBlackhole = 0;
+  
   for(int i=0; i<8; i++){
     for(int j=0; j<8; j++){
       sector[i][j]=0;
@@ -123,6 +125,21 @@ void initSector(byte mx, byte my) {
     if (sector[rx][ry] == 0) {
       sector[rx][ry] = 11;
       counter++;
+    }
+  }
+  if( existBlackhole == 1){
+    if(random(1) == 0){
+      counter = 0;
+      while (counter < 1) {
+        rx = random(8);
+        ry = random(8);
+        if (sector[rx][ry] == 0) {
+          sBlackhole = 1;
+          blackhole.x = rx;
+          blackhole.y = ry;
+          counter++;
+        }
+      }
     }
   }
   gKlingon = k;
