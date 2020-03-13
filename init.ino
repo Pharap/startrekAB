@@ -67,7 +67,7 @@ void initEnterprise() {
   enterprise.quadrant.y = random(8);
   enterprise.energy = 1500;
   enterprise.shield = 1500;
-  enterprise.torpedo = 10;
+  enterprise.torpedo = 100;
   for( int i=0; i<8; i++){
     damage[i]=0;
   }
