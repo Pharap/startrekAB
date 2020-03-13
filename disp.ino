@@ -405,8 +405,8 @@ void launchTorpedo( int m ) {
 void fireTorpedo( int deg ) {
   int xa;
   int ya;
-  byte xs;
-  byte ys;
+  byte xs = enterprise.sector.x;
+  byte ys = enterprise.sector.y;
   int x = enterprise.sector.x * 7 + 4;
   int y = enterprise.sector.y * 7;
   int n = 0;
@@ -418,7 +418,7 @@ void fireTorpedo( int deg ) {
   while (1) {
     if(sBlackhole == 1){
       arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
-      brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
+      brad = atan2( blackhole.y * 7 + 3 - y - ya, blackhole.x*4 + 7 - x - xa );
       bdeg = brad / 2 / 3.1415 * 360;
       if (bdeg < 0) bdeg += 360;
     } else {
