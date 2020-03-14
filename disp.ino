@@ -231,6 +231,14 @@ void dispMain() {
             arduboy.display();
             waitA();
             closeWindow();
+          } else if ( sectorJamming == 1) {
+            openWindow();
+            font3x5.setTextColor(WHITE);
+            font3x5.setCursor(20, 20);
+            font3x5.print(F("JAMMING!"));
+            arduboy.display();
+            waitA();
+            closeWindow();
           } else {
             probe();
           }
@@ -336,12 +344,19 @@ void moveEnterprise( int deg, int dist ) {
           bombAnimation(klingon[hit-2].sector.x,klingon[hit-2].sector.y);
           sector[klingon[hit-2].sector.x][klingon[hit-2].sector.y] = 0;
           gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
+          if(gKlingon == 0) sectorJamming = 0;
           totalKlingon--;
         }
         if (enterprise.shield == 0) damageMechanism();
       } else if (hit == 10) {
         gdock = 1;
         dockBase(); //dock base
+        if( supply == 1 ){
+          sector[base.x][base.y] = 0;
+          quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 16;
+          totalBase -= 1;
+          gdock = 0;
+        }
       } else {
         hitEnterprise( random( 200 ) );
         crashAnimation();
@@ -440,7 +455,7 @@ void fireTorpedo( int deg ) {
   
   enterprise.torpedo -= 1;
   while (1) {
-    arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
+//    arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
     deg = (deg + dd)%360;
     xa = n * cos(2 * 3.1415 * deg / 360);
     ya = n * sin(2 * 3.1415 * deg / 360);
@@ -458,6 +473,7 @@ void fireTorpedo( int deg ) {
       if (klingon[sector[xs][ys] - 2].energy < 0) {
         sector[xs][ys] = 0;
         gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
+        if(gKlingon == 0) sectorJamming = 0;
         totalKlingon--;
       }
       break;
@@ -492,7 +508,7 @@ void firePhaser( int energy ) {
   for (byte i = 0; i < k; i++) {
     dx = abs(klingon[i].sector.x - enterprise.sector.x);
     dy = abs(klingon[i].sector.y - enterprise.sector.y);
-    if( damage[2]==0 || damage[6]==0){
+    if( (damage[2]==0 || damage[6]==0) && sectorJamming == 0){
       chk = 1;
     } else {
       chk = ((dx*dy == 1) || (dx+dy == 1));
@@ -505,6 +521,7 @@ void firePhaser( int energy ) {
       if (klingon[i].energy < 0) {
         sector[klingon[i].sector.x][klingon[i].sector.y] = 0;
         gKlingon--;
+        if(gKlingon == 0) sectorJamming = 0;
         totalKlingon--;
       }
     }
@@ -547,6 +564,7 @@ void klingonAttack() {
           if (klingon[sector[xs][ys] - 2].energy < 0) {
             sector[xs][ys] = 0;
             gKlingon--; //quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 32;
+            if(gKlingon == 0) sectorJamming = 0;
             totalKlingon--;
           }
           break;
@@ -562,7 +580,7 @@ void klingonAttack() {
           quadrant[enterprise.quadrant.x][enterprise.quadrant.y] -= 1;
           break;  //hit star!
         }
-        if( damage[2] == 0 ){
+        if( damage[2] == 0 && sectorJamming == 0){
           font3x5.setCursor(x + xa, y + ya);
           font3x5.print('#');
           arduboy.drawRect(xs * 7 + 2, ys * 7, 7, 7, WHITE);

@@ -52,7 +52,7 @@ void drawSRS(byte dx) {
   char c;
   int xs, xe, ys, ye;
   font3x5.setTextColor(WHITE);
-  if (damage[2] > 0) {
+  if (damage[2] > 0 || sectorJamming == 1) {
     xs = enterprise.sector.x - 1; if (xs < 0) xs = 0;
     xe = enterprise.sector.x + 1; if (xe > 7) xe = 7;
     ys = enterprise.sector.y - 1; if (ys < 0) ys = 0;

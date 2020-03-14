@@ -32,10 +32,15 @@ void title() {
 }
 
 void toEnterprise( int mes ){
-  char buf[96];
+  char buf[96], buf2[96];
   arduboy.clear();
   font3x5.setTextColor(WHITE);
-  strcpy_P( buf, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
+  if(mes==1){
+    strcpy_P( buf2, (char*)pgm_read_word(&(string_table[ 5 ])));
+    sprintf( buf, buf2, totalKlingon, totalBase );
+  } else {
+    strcpy_P( buf, (char*)pgm_read_word(&(string_table[ 4 + mes ])));
+  }
   font3x5.setCursor(12,7);
   
   for( int i=0; i < strlen( buf ); i++){

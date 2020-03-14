@@ -33,8 +33,8 @@ void initQuadrant2() {
 void initQuadrant() {
   byte counter=0;
   int rx,ry;
-  totalKlingon = 25;
-  totalBase = 3;
+//  totalKlingon = 25;
+//  totalBase = 3;
 
   memset(&quadrant, 0, sizeof(quadrant));
   
@@ -67,7 +67,7 @@ void initEnterprise() {
   enterprise.quadrant.y = random(8);
   enterprise.energy = 1500;
   enterprise.shield = 1500;
-  enterprise.torpedo = 100;
+  enterprise.torpedo = 10;
   for( int i=0; i<8; i++){
     damage[i]=0;
   }
@@ -87,6 +87,30 @@ void initSector(byte mx, byte my) {
       sector[i][j]=0;
     }
   }
+
+  if( existBlackhole == 1){
+    if(random(2) == 0){
+      counter = 0;
+      while (counter < 1) {
+        rx = random(8);
+        ry = random(8);
+        if (sector[rx][ry] == 0) {
+          sBlackhole = 1;
+          blackhole.x = rx;
+          blackhole.y = ry;
+          counter++;
+        }
+      }
+    }
+  }
+//  sectorJamming = 1;
+
+  if( k>0 && jamming == 1 && sBlackhole == 0 && random(2)==0){
+    sectorJamming = 1;
+  } else {
+    sectorJamming = 0;
+  }
+
   rx = random(8);
   ry = random(8);
   sector[rx][ry] = 1;
@@ -127,21 +151,6 @@ void initSector(byte mx, byte my) {
       counter++;
     }
   }
-  
-  if( existBlackhole == 1){
-    if(random(2) == 0){
-      counter = 0;
-      while (counter < 1) {
-        rx = random(8);
-        ry = random(8);
-        if (sector[rx][ry] == 0) {
-          sBlackhole = 1;
-          blackhole.x = rx;
-          blackhole.y = ry;
-          counter++;
-        }
-      }
-    }
-  }
+//  if( k > 0 && jamming == 1 && sBlackhole == 0 ) sectorJamming = 1;
   gKlingon = k;
 }

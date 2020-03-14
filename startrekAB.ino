@@ -22,12 +22,12 @@ const char string_0[] PROGMEM = "COURSE?";
 const char string_1[] PROGMEM = "DISTANSE?";
 const char string_2[] PROGMEM = "ENERGY?";
 const char string_3[] PROGMEM = "PERCENTAGE?";
-const char string_4[] PROGMEM = "PHASER IS DAMAGED!";
+const char string_4[] PROGMEM = "NUMBER OF?";
 
 const char string_5[] PROGMEM = //order
     "TO ENTERPRISE:\n\n"
-    "  DESTROY 25 KLINGONS IN\n"
-    "  250 DAYS. THERE ARE 4\n"
+    "  DESTROY %d KLINGONS IN\n"
+    "  250 DAYS. THERE ARE %d\n"
     "  BASES.";
 
 const char string_6[] PROGMEM = //time is out
@@ -117,6 +117,28 @@ const char * const mechanism_table[] PROGMEM = {
   mechanism_4, mechanism_5, mechanism_6, mechanism_7
 };
 
+const char config_0[] PROGMEM = " NUM OF ENEMY";
+const char config_1[] PROGMEM = "  NUM OF BASE";
+const char config_2[] PROGMEM = "  BASE SUPPLY";
+const char config_3[] PROGMEM = "   BLACK HOLE";
+const char config_4[] PROGMEM = "      JAMMING";
+const char config_5[] PROGMEM = "START MISSION";
+const char * const config_table[] PROGMEM = {
+  config_0, config_1, config_2, config_3,
+  config_4, config_5
+};
+
+const char confItem_0[] PROGMEM = "MANY";
+const char confItem_1[] PROGMEM = "ONCE";
+const char confItem_2[] PROGMEM = "NOT EXIST";
+const char confItem_3[] PROGMEM = "EXIST";
+const char confItem_4[] PROGMEM = "DON'T";
+const char confItem_5[] PROGMEM = "DO";
+const char * const confItem_table[] PROGMEM = {
+  confItem_0, confItem_1, confItem_2, confItem_3,
+  confItem_4, confItem_5
+};
+
 struct player {
   point quadrant;
   point sector;
@@ -128,14 +150,18 @@ struct player {
 // globals
 byte quadrant[8][8] = {};
 byte sector[8][8] = {};
-byte totalKlingon = 0, totalBase = 0;
+byte totalKlingon = 25, totalBase = 3;
 byte gcurs=0, gKlingon=0;
 int days=250;
 bool gdock = 0;
 int gloop=0;
 int damage[8]={0,0,0,0,0,0,0,0};
-bool existBlackhole = 1;
+
+bool supply = 0;
+bool existBlackhole = 0;
 bool sBlackhole = 0;
+bool jamming = 0;
+bool sectorJamming = 0;
 
 ship klingon[3];
 point base;
@@ -153,7 +179,10 @@ void setup() {
 
 void loop() {
   days = 250;
+  totalKlingon = 25;
+  totalBase = 3;
   title();
+  configuration();
   toEnterprise(1);
   dispMain();
   toEnterprise( gloop + 1 );
