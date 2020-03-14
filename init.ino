@@ -81,6 +81,7 @@ void initSector(byte mx, byte my) {
   int rx, ry;
   int counter = 0;
   sBlackhole = 0;
+  sectorJamming = 0;
   
   for(int i=0; i<8; i++){
     for(int j=0; j<8; j++){
@@ -89,7 +90,7 @@ void initSector(byte mx, byte my) {
   }
 
   if( existBlackhole == 1){
-    if(random(2) == 0){
+    if(random(10) == 0){
       counter = 0;
       while (counter < 1) {
         rx = random(8);
@@ -105,7 +106,7 @@ void initSector(byte mx, byte my) {
   }
 //  sectorJamming = 1;
 
-  if( k>0 && jamming == 1 && sBlackhole == 0 && random(2)==0){
+  if( k>0 && jamming == 1 && sBlackhole == 0 && random(10)==0){
     sectorJamming = 1;
   } else {
     sectorJamming = 0;
@@ -117,6 +118,7 @@ void initSector(byte mx, byte my) {
   enterprise.sector.x = rx;
   enterprise.sector.y = ry;
 
+  counter = 0;
   while (counter < k) {
     rx = random(8);
     ry = random(8);
