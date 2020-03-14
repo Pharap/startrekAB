@@ -19,7 +19,7 @@ Font3x5 font3x5 = Font3x5();
 
 //messages
 const char string_0[] PROGMEM = "COURSE?";
-const char string_1[] PROGMEM = "DISTANSE?";
+const char string_1[] PROGMEM = "DISTANCE?";
 const char string_2[] PROGMEM = "ENERGY?";
 const char string_3[] PROGMEM = "PERCENTAGE?";
 const char string_4[] PROGMEM = "NUMBER OF?";
@@ -38,7 +38,7 @@ const char string_6[] PROGMEM = //time is out
 
 const char string_7[] PROGMEM = //destroyed
     "TO ENTERPRISE:\n\n"
-    "  YOU HAS BEEN DESTROYED.\n"
+    "  YOU HAVE BEEN DESTROYED.\n"
     "  THE FEDERATION WILL BE\n"
     "  CONQUERED.";
 
@@ -94,7 +94,7 @@ const char * const menu_table[] PROGMEM = {
 };
 
 const char computer_0[] PROGMEM = "COMPUTE TRAJECTORY";
-const char computer_1[] PROGMEM = " COMPUTE QUADRAT  ";
+const char computer_1[] PROGMEM = " COMPUTE QUADRANT ";
 const char computer_2[] PROGMEM = "   LOCK TORPEDO   ";
 const char computer_3[] PROGMEM = "    SELF REPAIR   ";
 const char computer_4[] PROGMEM = "      RETURN      ";
@@ -105,7 +105,7 @@ const char * const computer_table[] PROGMEM = {
 };
 
 const char mechanism_0[] PROGMEM = "WARP ENGINES";
-const char mechanism_1[] PROGMEM = "L.R. SONSORS";
+const char mechanism_1[] PROGMEM = "L.R. SENSORS";
 const char mechanism_2[] PROGMEM = "S.R. SENSORS";
 const char mechanism_3[] PROGMEM = "PHOTON TUBES";
 const char mechanism_4[] PROGMEM = "PHASER CNTRL";
