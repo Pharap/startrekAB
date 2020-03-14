@@ -269,7 +269,7 @@ void moveEnterprise( int deg, int dist ) {
   int hit, r;
 
   float brad;
-  int bdeg;
+  int bdeg, dd;
   
   gdock = 0;
   enterprise.energy -= dist;
@@ -277,18 +277,27 @@ void moveEnterprise( int deg, int dist ) {
     warp = dist;
     dist = 2;
   }
-  for ( int n = 0; n < dist * 8; n++) {
-    if(sBlackhole == 1){
-      arduboy.drawCircle( blackhole.x * 4 + 4+3, blackhole.y * 7+3, 3, WHITE);
-      brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
-      bdeg = brad / 2 / 3.1415 * 360;
-      if (bdeg < 0) bdeg += 360;
+
+  if(sBlackhole == 1){
+    brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
+    bdeg = brad / 2 / 3.1415 * 360;
+    if (bdeg < 0) bdeg += 360;
+    if ( (deg - bdeg + 360)%360 < 180){
+      dd = 359;
+    } else if ((deg - bdeg + 360)%360 == 180){
+      dd = 0;    
     } else {
-      bdeg = 0;
+      dd = 1;
     }
+  } else {
+    dd = 0;
+  }
+
+  for ( int n = 0; n < dist * 8; n++) {
     sector[enterprise.sector.x][enterprise.sector.y] = 0;
-    xa = n * cos(2 * 3.1415 * (deg + bdeg/30) / 360);
-    ya = n * sin(2 * 3.1415 * (deg + bdeg/30) / 360);
+    deg = (deg + dd)%360;
+    xa = n * cos(2 * 3.1415 * deg / 360);
+    ya = n * sin(2 * 3.1415 * deg / 360);
 
     xs = (x + xa - 4 + 3) / 7;
     ys = (y + ya + 3 ) / 7;
@@ -418,15 +427,15 @@ void fireTorpedo( int deg ) {
     brad = atan2( blackhole.y - enterprise.sector.y, blackhole.x - enterprise.sector.x );
     bdeg = brad / 2 / 3.1415 * 360;
     if (bdeg < 0) bdeg += 360;
+    if ( (deg - bdeg + 360)%360 < 180){
+      dd = 359;
+    } else if ((deg - bdeg + 360)%360 == 180){
+      dd = 0;    
+    } else {
+      dd = 1;
+    }
   } else {
-    bdeg = 0;
-  }
-  if ( bdeg - deg < 0){
-    dd = 359;
-  } else if (bdeg - deg == 0){
-    dd = 0;    
-  } else {
-    dd = 1;
+    dd = 0;
   }
   
   enterprise.torpedo -= 1;

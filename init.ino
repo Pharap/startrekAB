@@ -127,8 +127,9 @@ void initSector(byte mx, byte my) {
       counter++;
     }
   }
+  
   if( existBlackhole == 1){
-    if(random(1) == 0){
+    if(random(2) == 0){
       counter = 0;
       while (counter < 1) {
         rx = random(8);
