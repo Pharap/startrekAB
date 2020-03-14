@@ -98,7 +98,7 @@ int dispComputer() {
         case 3:
           strcpy_P( buf, (char*)pgm_read_word(&(string_table[2])));
           d = askAmount( 0, enterprise.energy, buf, 100, 0 );
-          for( int i=0; i < d; i++){
+          for( int i=0; i < d * 8; i++){
             r=random(8);
             if( damage[r] > 0 && random(100)==0 ) damage[r]--;
           }
